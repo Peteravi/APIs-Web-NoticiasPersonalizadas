@@ -1,8 +1,8 @@
 import requests
 
 def solicitar_noticias(api_key, tema, idioma='es'):
-    url = 'https://newsapi.org/v2/top-headlines'
-    parametros = {'apiKey': api_key, 'category': tema, 'language': idioma}
+    url = 'https://newsapi.org/v2/everything'
+    parametros = {'q': tema, 'language': idioma, 'apiKey': api_key}
 
     try:
         respuesta = requests.get(url, params=parametros)
@@ -27,14 +27,9 @@ def imprimir_noticias(noticias):
         print("No se pudieron obtener noticias.")
 
 def main():
-    api_key = '6edef1c1da2c412bba4b6235c2f68429'
+    api_key = '2d86aea7d53648508f829b7f2de29dcb'
     
-    temas_validos = ['business', 'technology', 'science', 'health', 'sports', 'entertainment']
-    tema = input("Ingresa el tema de noticias que te interesa (ej. business, technology, science): ")
-
-    while tema.lower() not in temas_validos:
-        print("Tema no válido. Temas válidos: business, technology, science, health, sports, entertainment")
-        tema = input("Ingresa el tema de noticias que te interesa: ")
+    tema = input("Ingresa el tema de noticias que te interesa (ej. Apple): ")
 
     noticias = solicitar_noticias(api_key, tema)
     imprimir_noticias(noticias)
