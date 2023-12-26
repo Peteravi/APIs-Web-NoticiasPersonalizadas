@@ -1,12 +1,12 @@
 import requests
 
-def solicitar_noticias(api_key, tema):
+def solicitar_noticias(api_key, tema, idioma='es'):
     url = 'https://newsapi.org/v2/top-headlines'
-    parametros = {'apiKey': api_key, 'category': tema}
+    parametros = {'apiKey': api_key, 'category': tema, 'language': idioma}
 
     try:
         respuesta = requests.get(url, params=parametros)
-        respuesta.raise_for_status()  # Lanza una excepción para códigos de estado no exitosos
+        respuesta.raise_for_status()
         return respuesta.json()['articles']
 
     except requests.exceptions.HTTPError as errh:
